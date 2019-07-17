@@ -1,0 +1,50 @@
+在dos命令中安装apache:
+
+httpd -k install
+
+httpd -k start  重启
+
+
+httpd -k stop  停止运行
+
+
+httpd -k restart   重启
+
+httpd -v  查看版本
+
+httpd -t  测试
+httpd -M  加载的模块
+define (常量名,常量值,布尔值) 
+
+const 常量名=常量值 
+unset()销毁变量
+在php中求数组的长度可以通过count()，也可以通过sizeof()求数组的长度
+return是终止当前页面继续执行
+
+exit和die终止下面所有代码继续执行
+
+
+
+func_get_args():以数组的形式保存实参
+
+
+func_num_args():保存实参的个数
+
+
+
+[XDebug]
+zend_extension=php_xdebug.dll
+xdebug.profiler_append = 0
+xdebug.profiler_enable = 1
+xdebug.profiler_enable_trigger = 0
+xdebug.profiler_output_dir ="D:\phpStudy\PHPTutorial\tmp\xdebug"
+xdebug.trace_output_dir ="D:\phpStudy\PHPTutorial\tmp\xdebug"
+xdebug.profiler_output_name = "cache.out.%t-%s"
+xdebug.remote_enable = 1
+xdebug.remote_handler = "dbgp"
+xdebug.remote_host = "127.0.0.1"
+xdebug.remote_port = 9000
+xdebug.remote_mode = "req"
+xdebug.idekey = PHPSTORM
+
+https://xdebug.org/wizard.php

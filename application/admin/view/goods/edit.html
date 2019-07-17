@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品修改</title>
+    <link href="__STATIC__/admin/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__STATIC__/admin/js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span> 
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">修改商品</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>基本信息</span></div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <ul class="forminfo">
+                <li>
+                    <label>商品名称*</label>
+                    <input name="goods_name" placeholder="请输入商品名称" type="text" class="dfinput" 
+                    value="{$goods.goods_name}"/><i>名称不能超过200个字符</i>
+                </li>
+                <li>
+                    <label>商品数量*</label>
+                    <input name="goods_number" placeholder="请输入商品数量" type="text" class="dfinput" value="{$goods.goods_number}"/>
+                </li>
+                <li>
+                    <label>商品价格*</label>
+                    <input name="goods_price" placeholder="请输入商品价格" type="text" class="dfinput" value="{$goods.goods_price}"/><i></i>
+                </li>
+                <li>
+                    <label>促销价*</label>
+                    <input name="goods_discount_price" placeholder="请输入商品促销价" type="text" class="dfinput" value="{$goods.goods_discount_price}"/><i></i>
+                </li>
+                <li>
+                    <label>商品重量</label>
+                    <input name="goods_weight" placeholder="请输入商品重量" type="text" class="dfinput" value="{$goods.goods_weight}"/>
+                </li>
+               <li>
+                    <textarea name="goods_desc" id="ueditor"></textarea>
+                </li>
+                <script src="__STATIC__/ueditor/ueditor.config.js"></script>
+                <script src="__STATIC__/ueditor/ueditor.all.js"></script>
+                <script>
+                    var ue=UE.getEditor('ueditor',{
+                    initialFrameWidth:600  //初始化编辑器宽度,默认1000
+                    ,initialFrameHeight:250  //初始化编辑器高度,默认320
+                        }
+                    )
+                    
+
+                </script>
+                
+                <li>
+                    <label>是否上架</label>
+                    <cite>
+                    <input name="display" type="radio" value="1" {$goods.display==1?'checked':''} />是&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="display" type="radio" value="0" {$goods.display!==1?'checked':''}/>否
+                </cite>
+                </li>
+
+                <li>
+                        <label>是否新品</label>
+                        <cite>
+                        <input name="is_new" type="radio" value="1" {$goods.is_new==1?'checked':''} />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_new" type="radio" value="0" {$goods.is_new!==1?'checked':''}/>否
+                    </cite>
+                    </li>
+
+                    <li>
+                            <label>是否热卖</label>
+                            <cite>
+                            <input name="is_hot" type="radio" value="1" {$goods.is_hot==1?'checked':''} />是&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="is_hot" type="radio" value="0" {$goods.is_hot!==1?'checked':''}/>否
+                        </cite>
+                        </li>
+
+                        <li>
+                                <label>是否推荐</label>
+                                <cite>
+                                <input name="is_best" type="radio" value="1" {$goods.is_best==1?'checked':''} />是&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="is_best" type="radio" value="0" {$goods.is_best!==1?'checked':''}/>否
+                            </cite>
+                            </li>
+                
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="确认保存" />
+                </li>
+            </ul>
+
+            
+            <div class="preview" >
+                <div class="preview-box">
+                    <div class="preview-del">删除</div>
+                    <input id="file1" type="file" name="img" accept="image/*"/>
+                    <label for="file1">上传文件</label>
+                </div>
+            </div>
+            <style type="text/css">
+            .formbody { position: relative; }
+            .preview { width: 150px; border-radius: 10px; overflow: hidden; position: absolute; left: 490px; top: 140px;}
+            .preview .preview-box { position: relative; }
+            .preview .preview-del {position: absolute;top: 0px; width: 100%; font-size: 13px; line-height: 20px; text-align: center; background: rgb(244,244,244);color:#ccc; cursor: pointer;z-index: 2;}
+            .preview .preview-del:hover {color: blue;}
+            .preview label  {padding:0px !important;margin: 0px !important; }
+            .preview input[type='file'] { display: none; }
+            .preview label{width: 100%;height: 150px;line-height: 150px;text-align: center;background: #fff; color: #ccc; background-size:150px 150px;border-radius: 5px;display: inline-block;cursor: pointer;}
+            .preview { border: 2px dashed #ccc; }
+            </style>    
+            <script src="./__STATIC__/admin/js/jquery.js"></script>
+            <script type="text/javascript">
+            $(document).ready(function(){
+                {php}
+                    $img=str_replace('\\','/',$goods['goods_big_logo'])
+                {/php}
+                $('.preview input[type=file]').next().html('');
+                $('.preview input[type=file]').next().css('background-image','url(__ROOT__/uploads/{$img})')
+            });
+            //删除图片
+            $(".preview .preview-del").live("click", function() {
+                $(this).next().next().html('上传文件');
+                $(this).next().next().css('background-image', '' );
+            });
+            //预览图片
+            $(".preview input[type=file]").live("change", function(e) {
+                //获取图片资源
+                var file = e.target.files[0]; 
+                //只选择图片文件
+                if (!file.type.match('image.*')) return false;
+                //通过HTML5接口（FileReader）读取图片
+                var reader = new FileReader();
+                //读取文件
+                reader.readAsDataURL(file); 
+                //文件读取成功完成时触发
+                var thisObj = this;
+                reader.onload = function(arg) {
+                    //显示图片
+                    $(thisObj).next().html('');
+                    $(thisObj).next().css('background-image', 'url('+arg.target.result +')' );
+                }
+            });
+            </script>
+        </form>
+    </div>
+</body>
+
+</html>

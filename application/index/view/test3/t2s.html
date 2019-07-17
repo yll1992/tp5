@@ -1,0 +1,20 @@
+<ul>
+	{foreach $t2s as $t2}
+	{$t2.id}_{$t2.uname}
+	{/foreach}
+</ul>
+<link rel="stylesheet" href="__STATIC__/bootstrap.min.css">
+{$t2s->render()}
+
+
+
+<hr />
+<style>.pager {text-align:left;}</style>
+{$t2s->render2()}
+数据总数：{$t2s->total()}
+<br />
+总页数：{$t2s->lastPage()}
+<br />
+当前页：{$t2s->currentPage()}
+<br />
+跳转地址：{:url('test3/fn4', ['page'=>1])}
