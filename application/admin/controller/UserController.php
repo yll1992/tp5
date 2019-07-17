@@ -37,7 +37,6 @@ class UserController extends BaseController
             }
         }else{
             $roles=Role::select();
-            echo 666;
             return $this->fetch('add',[
                 'roles'=>$roles
             ]);
